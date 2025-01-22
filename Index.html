@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الصالة الرياضية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>إدارة الصالة الرياضية</h1>
+    </header>
+    <main>
+        <section id="members">
+            <h2>الأعضاء</h2>
+            <form id="addMemberForm">
+                <input type="text" id="memberName" placeholder="اسم العضو" required>
+                <input type="email" id="memberEmail" placeholder="البريد الإلكتروني" required>
+                <input type="tel" id="memberPhone" placeholder="الهاتف" required>
+                <button type="submit">إضافة عضو</button>
+            </form>
+            <ul id="memberList"></ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
