@@ -3,112 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة المشتركين</title>
-    <style>
-        .flex { display: flex; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-2 { gap: 0.5rem; }
-        .rounded { border-radius: 0.25rem; }
-        .bg-white { background-color: white; }
-        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-        .overflow-hidden { overflow: hidden; }
-        .p-6 { padding: 1.5rem; }
-        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-        .font-semibold { font-weight: 600; }
-        .mb-4 { margin-bottom: 1rem; }
-        .overflow-x-auto { overflow-x: auto; }
-        .w-full { width: 100%; }
-        .bg-gray-50 { background-color: #f9fafb; }
-        .text-right { text-align: right; }
-        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-        .font-medium { font-weight: 500; }
-        .text-gray-500 { color: #6b7280; }
-        .divide-y > :not([hidden]) ~ :not([hidden]) { border-top-width: 1px; }
-        .divide-gray-200 { border-color: #e5e7eb; }
-        .whitespace-nowrap { white-space: nowrap; }
-        .inline-flex { display: inline-flex; }
-        .px-2.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
-        .py-0.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
-        .rounded-full { border-radius: 9999px; }
-        .text-xs { font-size: 0.75rem; line-height: 1rem; }
-        .bg-red-100 { background-color: #fee2e2; }
-        .text-red-800 { color: #991b1b; }
-        .bg-yellow-100 { background-color: #fef3c7; }
-        .text-yellow-800 { color: #92400e; }
-        .bg-green-100 { background-color: #dcfce7; }
-        .text-green-800 { color: #166534; }
-    </style>
+    <title>شات خاص</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-        <div>
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <img src="filter-icon.png" alt="Filter" class="h-5 w-5">
-                    <h2 class="text-xl font-semibold">الفلترة</h2>
-                </div>
-                <label class="flex items-center gap-2">
-                    <input type="checkbox" id="filterExpired" class="rounded">
-                    <span>عرض المشتركين منتهي الصلاحية فقط</span>
-                </label>
-            </div>
+    <div class="chat-container">
+        <!-- رأس الشات -->
+        <div class="chat-header">
+            <h2>الشات الخاص</h2>
         </div>
 
-        <!-- Subscribers List -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="p-6">
-                <h2 class="text-xl font-semibold mb-4">قائمة المشتركين</h2>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">الاسم الكامل</th>
-                            <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">رقم الهاتف</th>
-                            <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">المبلغ</th>
-                            <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">تاريخ البداية</th>
-                            <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">تاريخ النهاية</th>
-                            <th class="px-6 py-3 text-right text-sm font-medium text-gray-500">الحالة</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <!-- Example Row -->
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">محمد أحمد</td>
-                            <td class="px-6 py-4 whitespace-nowrap">0123456789</td>
-                            <td class="px-6 py-4 whitespace-nowrap">100 ريال</td>
-                            <td class="px-6 py-4 whitespace-nowrap">2023-01-01</td>
-                            <td class="px-6 py-4 whitespace-nowrap">2023-12-31</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">نشط</span>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
-            </div>
+        <!-- منطقة الرسائل -->
+        <div class="chat-messages" id="chat-messages">
+            <!-- الرسائل ستظهر هنا -->
+        </div>
+
+        <!-- منطقة إدخال الرسالة -->
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="اكتب رسالتك هنا..." />
+            <button id="send-button">إرسال</button>
         </div>
     </div>
 
-    <script>
-        document.getElementById('filterExpired').addEventListener('change', function(e) {
-            const filterExpired = e.target.checked;
-            // Implement filtering logic here
-        });
-
-        function isExpired(endDate) {
-            const today = new Date();
-            const expiryDate = new Date(endDate);
-            return expiryDate < today;
-        }
-
-        function isNearingExpiry(endDate) {
-            const today = new Date();
-            const expiryDate = new Date(endDate);
-            const daysDifference = (expiryDate - today) / (1000 * 60 * 60 * 24);
-            return daysDifference <= 30 && daysDifference > 0;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
